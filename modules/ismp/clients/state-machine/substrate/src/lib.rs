@@ -20,6 +20,8 @@
 
 extern crate alloc;
 
+#[cfg(not(feature = "std"))]
+use alloc::string::ToString;
 use alloc::{collections::BTreeMap, format, vec, vec::Vec};
 use codec::Decode;
 use core::{fmt::Debug, marker::PhantomData};
