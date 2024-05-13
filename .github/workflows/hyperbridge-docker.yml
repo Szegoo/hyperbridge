@@ -41,7 +41,6 @@ jobs:
       - name: Build
         run: |
           cargo build --release -p hyperbridge
-          mv ./target/release/hyperbridge ./
 
       - name: Install Cargo get
         run: cargo install cargo-get
@@ -53,7 +52,7 @@ jobs:
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
       - name: Build the Docker image
-        run: docker build -t polytopelabs/hyperbridge:v$(cargo get package.version --entry ./parachain/node) -t polytopelabs/hyperbridge:latest -f ./scripts/docker/slim.Dockerfile .
+        run: docker build -t polytopelabs/hyperbridge:v$(cargo get package.version --entry ./parachain/node) -t polytopelabs/hyperbridge:latest -f ./scripts/docker/hyperbridge.Dockerfile .
 
       - name: Docker Push
         run: |
